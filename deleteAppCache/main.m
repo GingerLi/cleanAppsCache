@@ -60,7 +60,7 @@ void read_dir(service_conn_t afcFd, afc_connection* afc_conn_p, const char* dir)
         
         err = AFCRemovePath(afc_conn_p, dir_joined);
         if (err != 0) {
-            printf("%d",err);
+            printf("%d\n",err);
         }
         free(dir_joined);
     }
@@ -79,7 +79,7 @@ void list_files(struct am_device * device, char * bundle_id)
     if (service_err != 0)
     {
         //PRINT("Unable to find bundle with id: %s\n", bundle_id);
-        printf("%d",service_err);
+        printf("%d\n",service_err);
         CFRelease(cf_bundle_id);
         //exit(1);
         return;
@@ -95,6 +95,8 @@ void list_files(struct am_device * device, char * bundle_id)
     }
     
     read_dir(houseFd, afc_conn_p, "/Library/Caches");
+    
+    AFCConnectionClose(afc_conn_p);
     CFRelease(cf_bundle_id);
 }
 
@@ -183,6 +185,7 @@ void handle_device(AMDeviceRef device) {
     }
     
     CFRelease(found_device_id);
+    exit(0);
     
 }
 void device_callback(struct am_device_notification_callback_info *info, void *arg) {
