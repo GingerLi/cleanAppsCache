@@ -179,7 +179,7 @@ void handle_device(AMDeviceRef device) {
     NSDictionary * dic_apps_info = (__bridge NSDictionary *)(apple_response);
     NSArray * arr_apps_bundle = [dic_apps_info allKeys];
     for (NSString * str_app_bundle in arr_apps_bundle) {
-        char * bundle_id = [str_app_bundle cStringUsingEncoding:NSASCIIStringEncoding];
+        char * bundle_id = (char *)[str_app_bundle cStringUsingEncoding:NSASCIIStringEncoding];
         delete_app_cache(device, bundle_id);
         
     }

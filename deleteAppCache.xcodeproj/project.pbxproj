@@ -271,6 +271,7 @@
 				3E8176E61935907C001EF03C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
