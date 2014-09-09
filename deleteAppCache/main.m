@@ -57,8 +57,8 @@ void read_dir(service_conn_t afcFd, afc_connection* afc_conn_p, const char* dir)
         read_dir(afcFd, afc_conn_p, dir_joined);
         printf("%s\n", dir_joined);
 
-        
-        err = AFCRemovePath(afc_conn_p, dir_joined);
+        //AFCDirectoryCreate(afc_conn_p, "搜房");
+        //err = AFCRemovePath(afc_conn_p, dir_joined);
         if (err != 0) {
             printf("%d\n",err);
         }
@@ -71,7 +71,7 @@ void list_files(struct am_device * device, char * bundle_id)
 {
     
     service_conn_t houseFd;
-    //bundle_id = "teladi.game.flappy2048";
+    //bundle_id = "com.soufun.SoufunBasic";
     
     CFStringRef cf_bundle_id = CFStringCreateWithCString(NULL, bundle_id, kCFStringEncodingASCII);
     mach_error_t service_err = 0;
@@ -180,6 +180,7 @@ void handle_device(AMDeviceRef device) {
     NSArray * arr_apps_bundle = [dic_apps_info allKeys];
     for (NSString * str_app_bundle in arr_apps_bundle) {
         char * bundle_id = (char *)[str_app_bundle cStringUsingEncoding:NSASCIIStringEncoding];
+        //char * bundle_id = "com.soufun.SoufunBasic";
         delete_app_cache(device, bundle_id);
         
     }
